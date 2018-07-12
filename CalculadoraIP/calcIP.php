@@ -1,10 +1,5 @@
 <?php
 
-      
-
-
- 
-
     function subRedeQuant($contBits){
          $contBits = 32 - $contBits;
          $enderecos = pow(2,$contBits);
@@ -18,7 +13,6 @@
    		return $subredes;
 
    	}
-
 
 
     function hostsPorSubRedes($enderecos){
@@ -57,24 +51,23 @@
       function classes($primeOct){ 
 
           if ($primeOct > 0 AND $primeOct < 128) {
-            return "classe A";
+            return "Classe A";
           }
           elseif ($primeOct > 127 AND $primeOct < 192) {
-            return "classe B";
+            return "Classe B";
           }
           elseif ($primeOct > 191 AND $primeOct  < 224) {
-            return "classe C";
+            return "Classe C";
           }
           elseif ($primeOct > 223 AND $primeOct  < 240) {
-            return "classe D";
+            return "Classe D";
           }
           elseif ($primeOct > 239 AND $primeOct  < 248) {
-            return "classe E";
+            return "Classe E";
           }
           else{
             return "Digite seu ip ";
-            
-          
+
         }
           }
 
@@ -96,38 +89,31 @@
               }
          }
 
-
-
-
-
-
-
-
-         
         $subRedeQuant = subRedeQuant($_POST['contBits']);
-        print_r($subRedeQuant);
-         
+        echo "Quantidade de Sub Rede: "; print_r($subRedeQuant); 
+        echo "<pre>"; 
         $subRede = subRede($subRedeQuant);
-        print_r($subRede);
-        
+        echo "Numero de Sub Rede: "; print_r($subRede);
+        echo "<pre>";
         $hostsPorSubRedes = hostsPorSubRedes($subRedeQuant);
-        print_r($hostsPorSubRedes);
-       
+        echo "Quantidade de Hosts por Sub Rede: "; print_r($hostsPorSubRedes);
+      	echo "<pre>";
         $primeHost = primeHost($_POST['quartOct'], $subRedeQuant,$_POST['primeOct'],$_POST['segundOct'],$_POST['tercOct']);
-        print_r($primeHost);
-                  
+        echo "Primeiro Host: "; print_r($primeHost);
+        echo "<pre>";        
         $ultimHots = ultimHots( $subRedeQuant,$_POST['primeOct'],$_POST['segundOct'],$_POST['tercOct'],$_POST['quartOct']);
-        print_r($ultimHots);
-                      
+        echo "Ultimo Host: "; print_r($ultimHots);
+        echo "<pre>";              
         $mascaraDeRede = mascaraDeRede($subRedeQuant);
-        print_r($mascaraDeRede);
-                         
+        echo "Máscara de Rede: "; print_r($mascaraDeRede);
+        echo "<pre>";                 
         $classes = classes($_POST['primeOct']);
-        print_r($classes);
+        echo "Pertence a: "; print_r($classes);
+ 		echo "<pre>";
+        $publicoPrivado = PublOuPriv($_POST['primeOct'],$_POST['segundOct'],$_POST['tercOct']);
+        echo "IP público ou privado: "; print_r($publicoPrivado);
 
- 
-        $publicoPrivado = publicoPrivado($_POST['primeOct'],$_POST['segundOct'],$_POST['tercOct']);
-        print_r($publicoPrivado);
+
 
 
 
